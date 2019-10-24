@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../partials/head %>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.js"></script>
+
+    <style>
+    .credittable tr th {
+        height: 30px !important;
+    }
+
+    .credittable tr td {
+        height: 30px !important;
+    }
+
+    .debittable tr th {
+        height: 30px !important;
+    }
+
+    .debittable tr td {
+        height: 30px !important;
+    }
+    </style>
+</head>
+
+<body>
+    <header>
+        <% include ../partials/header %>
+    </header>
+<div class="row">
+        <div class="col-md-2 ">
+            <nav class="nav flex-column" style="color:red; border:1px solid green; box-shadow:2px 2px green;">
+                <a style="color:red; border:1px solid green; box-shadow:2px 2px green; font-size:18px;" href="/daybook" class="nav-link">Search Daybook</a>
+                <a style="color:red; border:1px solid green; box-shadow:2px 2px green; font-size:18px;" href="/daybookreturn" class="nav-link">Modify Daybook</a>
+            </nav>
+        </div>
+        <div class="col-md-10">
+            <h2 class="text-center mt-2">Daybook</h2>
+            <form id="daybookform" class="daybookform" onkeypress="return event.keyCode != 13;">
+                <div class="row">
+                    <div class="col-12 mt-3 text-center">
+                        <label> Start Date </label>
+                        <input name="initialdate" id="daybookinitialdate" style="font-size: 15px; border:1px solid lightblue !important; height:32px !important; border-radius:5px !important;  box-shadow: 2px 2px lightblue !important;"  class="text-center ml-2 mr-2"  required autocomplete="off" >
+                        <label >End Date</label>
+                        <input name="finaldate" id="daybookfinaldate" style="font-size: 15px; border:1px solid lightblue !important; height:32px !important; border-radius:5px !important;  box-shadow: 2px 2px lightblue !important;"  class="text-center ml-2 mr-2" required  autocomplete="off" >
+                        <button type="submit"  id="daybookkhoj" class="btn btn-primary btn-md"><i class="fa fa-search mr-2"></i>Search</button>
+                    </div>
+                </div>
+                <div class="container mt-2 ">
+                    <div class="row">
+                        <div class="col-md-2 text-center ml-3">
+                        </div>
+                        <div class="col-md-10 ml-2  daybookdiv">
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <p class="nodata" style="text-align-last: center; display: none;"> </p>
+        </div>
+    </div>
+    <script src="./js/daybook.js"></script>
+    </body>
+    </html>

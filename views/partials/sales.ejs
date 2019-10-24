@@ -1,0 +1,150 @@
+
+<script>
+
+// $(document).on('focus','table.salestable tr td input',function(e) {
+//     // alert("dfd");
+//    $(this).parent().parent().find('td').addClass('bg-primary');
+//     $(this).parent().parent().find('td input:visible').addClass('bg-primary');
+    
+//     $(this).removeClass('bg-primary');
+
+//     $(this).css('background-color','black');
+//     $(this).css('color','white');
+
+
+// });
+
+$(document).on('mouse-in','tr',function(e) {
+    // alert("dfd");
+$(this).find('input').addClass('bg-primary');
+
+
+});
+$(document).on('mouse-out','tr',function(e) {
+    // alert("dfd");
+$(this).find('input').addClass('bg-white');
+
+
+});
+
+</script>
+
+<style>
+
+    table.salestable input:focus{
+        background-color:black !important;
+        color: white !important;
+    }
+table.salestable tr td input 
+{
+border:0px solid white !important;
+font-weight: bold;
+color:black !important;
+}
+
+table.salestablefinal input:focus{
+        background-color:black !important;
+        color: white !important;
+    }
+table.salestablefinal tr td input 
+{
+border:0px solid white !important;
+font-weight: bold;
+color:black !important;
+}
+</style>
+
+<div class="salespurchaseform  d-none">
+	<form id="salespurchasetransaction" method="post"  onkeypress="return event.keyCode != 13;" onsubmit="return false;" >
+<div class="row">
+
+    <div class="col-12 mt-2 salespurchasebill">
+        <label style="font-size:20px; width:150px; text-align: center;  background-color:red;" id="transactiontitle1">Purchase</label><label class="ml-3">Number:</label><h6 class='ml-2 text-dark d-inline mr-5 ' id="transactionno1" ></h6>
+        <h6   class='dates text-dark d-inline float-right mr-5'>Date:</h6>
+        <br>
+        <label style="font-size:15px;">Party's A/C Name </label>
+        <input autocomplete="off" type="text" list="accountnamelist"  id="accountname" class="form-control w-25 d-inline border border-1" required autofocus>
+        <ul class="list-group d-none">
+        </ul>
+        <br>
+      <!--   <i style="font-size:15px; opacity: 0.7;">Current Balance</i>
+        <input type="text"  id="ledger-type" class="form-control w-25 d-inline">
+  			<br><br> -->
+       
+    </div>
+</div>
+
+
+    <div style="max-height: 400px;" class="table-responsive mt-3">
+        <table class="salestable table">
+            <tr class=" m-0 bg-dark text-white row text-center">
+      
+                <th class="col-md-4">Name of Item</th>
+                <th class="col-md-1">Quantity</th>
+                <th class="col-md-2">Rate</th>
+                <th class="col-md-1">per</th>
+                <th class="col-md-1">D%</th>
+                <th class="col-md-1">V%</th>
+                <th class="col-md-2">Amount</th>
+            </tr>
+        </table>
+        
+    </div>
+    <div class="row">
+        <div class="col-md-4 ml-5"></div>
+  
+        <div class="col-md-6  float-right "></div>
+    
+        <!-- <label style="color:black !important; font-weight: bold; border-top:2px solid black;" class="d-inline form-control-sm  text-center" id="totalamount">0</label> -->
+        <button type="reset" class="btn ml-5 d-none resetpurchase justify-content-center  btn-primary"> Reset
+        </button>
+        <table class="table table-borderless salestablefinal">
+                <tr  class=" m-0 row text-center extraadded1">
+               
+                        <td  class="col-md-4 p-0"><input required value="Total amount" class="form-control" id="dvname-${i}" type="text" required oninvalid="this.setCustomValidity('Item not in the list!!')"/></td>
+                        <td  class="col-md-1 p-0"><input required   id="quantity-${i}" class="form-control bg-white" min="0" type="number" disabled /></td>
+                        <td  class="col-md-2 p-0"><input required  id="rate-${i}"  type="number" min="0" class="form-control"  /></td>
+                        <td   class="col-md-1 p-0"><input autocomplete="off" list="unitlist"  id="units-${i}"  type="text"  class="form-control" required /></td>
+                        <td  class="col-md-1 p-0"><input required   disabled  type="number" min="0" class="form-control bg-white"  /></td>
+                        <td  class="col-md-1 p-0"><input required    type="number" disabled min="0" class="form-control bg-white"  /></td>
+                        <td   class="col-md-2 p-0"><input  id="totalamount" style="border:1px solid #EEE !important;" type="text" class="form-control text-center" readonly   required /></td>
+                      </tr>
+            <tr  class=" m-0 row text-center extraadded1">
+               
+                    <td  class="col-md-4 p-0"><input required value="Discount amount" class="form-control" id="dvname-${i}" type="text" required oninvalid="this.setCustomValidity('Item not in the list!!')"/></td>
+                    <td  class="col-md-1 p-0"><input required   id="quantity-${i}" class="form-control bg-white" min="0" type="number" disabled /></td>
+                    <td  class="col-md-2 p-0"><input required  id="rate-${i}"  type="number" min="0" class="form-control"  /></td>
+                    <td   class="col-md-1 p-0"><input autocomplete="off" list="unitlist" id="units-${i}"  type="text"  class="form-control" required /></td>
+                    <td  class="col-md-1 p-0"><input required  disabled  type="number" min="0" class="form-control bg-white"  /></td>
+                    <td  class="col-md-1 p-0"><input required    type="number" disabled min="0" class="form-control bg-white"  /></td>
+                    <td   class="col-md-2 p-0"><input   id="discountamount" style="border:1px solid #EEE !important;" type="text" class="form-control text-center" readonly   required /></td>
+                  </tr>
+                  <tr  class=" m-0 row text-center extraadded1">
+               
+                        <td  class="col-md-4 p-0"><input required value="VAT amount" class="form-control"  id="dvname-${i}" type="text" required oninvalid="this.setCustomValidity('Item not in the list!!')"/></td>
+                        <td  class="col-md-1 p-0"><input required   id="quantity-${i}" class="form-control bg-white" min="0" type="number" disabled /></td>
+                        <td  class="col-md-2 p-0"><input required  id="rate-${i}"  type="number" min="0" class="form-control"  /></td>
+                        <td   class="col-md-1 p-0"><input autocomplete="off" list="unitlist"  id="units-${i}"  type="text"  class="form-control" required /></td>
+                        <td  class="col-md-1 p-0"><input required  disabled  type="number" min="0" class="form-control bg-white"  /></td>
+                        <td  class="col-md-1 p-0"><input required    type="number" disabled min="0" class="form-control bg-white"  /></td>
+                        <td   class="col-md-2 p-0"><input id="vatamount" style="border:1px solid #EEE !important;" type="text" class="form-control text-center" readonly   required /></td>
+                      </tr>
+                      <tr  class=" m-0 row text-center extraadded1">
+               
+                            <td  class="col-md-4 p-0"><input required value="Grandtotal" class="form-control" id="dvname-${i}" type="text" required oninvalid="this.setCustomValidity('Item not in the list!!')"/></td>
+                            <td  class="col-md-1 p-0"><input required  id="quantity-${i}" class="form-control bg-white" min="0" type="number" disabled /></td>
+                            <td  class="col-md-2 p-0"><input required  id="rate-${i}"  type="number" min="0" class="form-control"  /></td>
+                            <td   class="col-md-1 p-0"><input autocomplete="off" list="unitlist"  id="units-${i}"  type="text"  class="form-control" required /></td>
+                            <td  class="col-md-1 p-0"><input required   disabled  type="number" min="0" class="form-control bg-white"  /></td>
+                            <td  class="col-md-1 p-0"><input required   type="number" disabled min="0" class="form-control bg-white"  /></td>
+                            <td   class="col-md-2 p-0"><input style="border:1px solid #EEE !important;;"   id="grandtotalamount" type="text" class="form-control text-center" readonly   required /></td>
+                          </tr>
+        </table>
+        <div class="col-md-5"></div>
+        <button type="submit" onclick="javascript:purchasesubmit(event);" class="btn col-md-1 ml-5 w-25 btn-sm float-right btn-primary"> Submit
+        </button>
+
+    </div>
+
+</form>
+</div>

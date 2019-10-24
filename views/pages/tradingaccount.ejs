@@ -1,0 +1,81 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+    <style>
+   
+    </style>
+</head>
+<body>
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<div class="row">
+        
+        <div class="col-md-12">
+            <h2 class="text-center mt-2">Trading Account</h2>
+            <form id="daybookform" class="daybookform" onkeypress="return event.keyCode != 13;">
+                <div class="row">
+                    <div class="col-12 mt-3 text-center">
+                        <label> Start Date </label>
+                        <input name="initialdate" id="daybookinitialdate" style="font-size: 15px; border:1px solid lightblue !important; height:32px !important; border-radius:5px !important;  box-shadow: 2px 2px lightblue !important;"  class="text-center ml-2 mr-2"  required autocomplete="off" >
+                        <label >End Date</label>
+                        <input name="finaldate" id="daybookfinaldate" style="font-size: 15px; border:1px solid lightblue !important; height:32px !important; border-radius:5px !important;  box-shadow: 2px 2px lightblue !important;"  class="text-center ml-2 mr-2" required  autocomplete="off" >
+                        <button type="submit"  id="daybookkhoj" class="btn btn-primary btn-md"><i class="fa fa-search mr-2"></i>Search</button>
+                    </div>
+                </div>
+                 <div class="container mt-2 ">
+                    <div class="row">
+                        <div class="col-md-2 text-center ml-3">
+                        </div>
+                        <div class="col-md-10 ml-2  trialbalancediv">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+</div>
+
+<script>
+$(document).ready(function()
+{
+
+var tradingaccounttable= `<div class="row"><div class="col-md-6">`;
+
+
+$.ajax(
+    {
+        url:'/tradingaccount',
+        type:'post',
+        async:false,
+        success:function(data)
+        {
+        }
+    });
+
+var grandcredit = totalcredit.reduce(function(sum, item){
+	return sum = sum+item;
+},0);
+var granddebit = totaldebit.reduce(function(sum, item){
+	return sum = sum+item;
+},0);
+trialbalancetable+=`<tr><th>Grand Total</th><th>${granddebit}</th><th>${grandcredit}</th></tr>`;    console.log(trialbalancetable);
+
+$('.trialbalancediv').append(trialbalancetable);
+
+var gc = $.calendars.instance('gregorian', 'fr');
+var currentdate = gc.newDate();
+var currenttime = new Date();
+var currenttime = currenttime.toLocaleTimeString();
+$('#daybookinitialdate').calendarsPicker({calendar: $.calendars.instance('gregorian'),dateFormat: 'yyyy-mm-dd'})
+$('#daybookfinaldate').calendarsPicker({calendar: $.calendars.instance('gregorian'),dateFormat: 'yyyy-mm-dd'});
+})
+</script>
+
+
+</body>
+</html>
